@@ -1,0 +1,44 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oezzahi <oezzahi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/07/21 15:29:23 by oezzahi           #+#    #+#             */
+/*   Updated: 2026/07/24 10:45:18 by oezzahi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+int	ft_is_space(char c)
+{
+	if (c == ' ' || c == '\t' || c == '\n'
+		|| c == '\v' || c == '\f' || c == '\r')
+		return (1);
+	return (0);
+}
+
+int	ft_atoi(char *str)
+{
+	int	i;
+	int	nbr;
+	int	sign;
+
+	nbr = 0;
+	i = 0;
+	sign = 1;
+	while (ft_is_space(str[i]))
+		i++;
+	while (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign *= -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		nbr = nbr * 10 + (str[i] - '0');
+		i++;
+	}
+	return (nbr * sign);
+}
